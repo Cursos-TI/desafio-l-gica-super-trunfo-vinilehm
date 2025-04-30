@@ -1,88 +1,166 @@
 #include <stdio.h>
+#include <string.h>
 
 int main() {
-    // Dados Carta 1
-    char cidade1[127], cidade2[127];
-    unsigned long int populacao1, populacao2;
-    float area1, area2, pib1, pib2;
-    int npt1, npt2;
-    float densidade1, densidade2, percapita1, percapita2, superpoder1, superpoder2;
+    printf("Super Trunfo\n");
 
-    // Entrada carta 1
-    printf("Carta 1 - Nome da cidade: ");
+    // Entrada de dados - Carta 1
+    char estado1[127], carta1[127], cidade1[127];
+    unsigned long int populacao1;
+    float area1, pib1;
+    int npt1;
+    float densidade1, percapita1, superpoder1;
+
+    printf("----------------------------------------------------\n");
+    printf("Carta 1:\n");
+    printf("Sua carta é de qual estado brasileiro?: ");
+    scanf("%s", estado1);
+    printf("Qual o código da sua carta?: ");
+    scanf("%s", carta1);
+    printf("Qual o nome da sua cidade?: ");
     scanf("%s", cidade1);
-    printf("População: ");
+    printf("Qual a população da cidade?: ");
     scanf("%lu", &populacao1);
-    printf("Área: ");
+    printf("Qual a área aproximada desta cidade?: ");
     scanf("%f", &area1);
-    printf("PIB: ");
+    printf("Qual o PIB respectivo desta cidade?: ");
     scanf("%f", &pib1);
-    printf("Pontos turísticos: ");
+    printf("Quantos pontos turísticos há nesta cidade?: ");
     scanf("%d", &npt1);
-
-    // Cálculos carta 1
     densidade1 = populacao1 / area1;
     percapita1 = pib1 / populacao1;
     superpoder1 = populacao1 + area1 + pib1 + npt1 + percapita1 + (1.0 / densidade1);
 
-    // Entrada carta 2
-    printf("\nCarta 2 - Nome da cidade: ");
-    scanf("%s", cidade2);
-    printf("População: ");
-    scanf("%lu", &populacao2);
-    printf("Área: ");
-    scanf("%f", &area2);
-    printf("PIB: ");
-    scanf("%f", &pib2);
-    printf("Pontos turísticos: ");
-    scanf("%d", &npt2);
+    // Entrada de dados - Carta 2
+    char estado2[127], carta2[127], cidade2[127];
+    unsigned long int populacao2;
+    float area2, pib2;
+    int npt2;
+    float densidade2, percapita2, superpoder2;
 
-    // Cálculos carta 2
+    printf("\n----------------------------------------------------\n");
+    printf("Carta 2:\n");
+    printf("Sua carta é de qual estado brasileiro?: ");
+    scanf("%s", estado2);
+    printf("Qual o código da sua carta?: ");
+    scanf("%s", carta2);
+    printf("Qual o nome da sua cidade?: ");
+    scanf("%s", cidade2);
+    printf("Qual a população da cidade?: ");
+    scanf("%lu", &populacao2);
+    printf("Qual a área aproximada desta cidade?: ");
+    scanf("%f", &area2);
+    printf("Qual o PIB respectivo desta cidade?: ");
+    scanf("%f", &pib2);
+    printf("Quantos pontos turísticos há nesta cidade?: ");
+    scanf("%d", &npt2);
     densidade2 = populacao2 / area2;
     percapita2 = pib2 / populacao2;
     superpoder2 = populacao2 + area2 + pib2 + npt2 + percapita2 + (1.0 / densidade2);
 
-    // Menu para escolher atributos
-    int atr1, atr2;
-    float v1_c1 = 0, v1_c2 = 0, v2_c1 = 0, v2_c2 = 0;
+    // Escolha dos atributos
+    int escolha1 = 0, escolha2 = 0;
+    float soma1 = 0, soma2 = 0;
 
-    printf("\nEscolha o primeiro atributo:\n");
-    printf("1 - População\n2 - Área\n3 - PIB\n4 - Pontos Turísticos\n5 - Densidade (MENOR vence)\n6 - PIB per capita\n7 - Super Poder\n");
-    scanf("%d", &atr1);
+    printf("\nEscolha o PRIMEIRO atributo:\n");
+    printf("1 - População\n2 - Área\n3 - PIB\n4 - Pontos Turísticos\n5 - Densidade Demográfica (MENOR vence)\n6 - PIB per capita\n7 - Super Poder\n");
+    scanf("%d", &escolha1);
 
     do {
-        printf("Escolha o segundo atributo (diferente do primeiro): ");
-        scanf("%d", &atr2);
-    } while (atr2 == atr1 || atr2 < 1 || atr2 > 7);
+        printf("\nEscolha o SEGUNDO atributo (diferente do primeiro):\n");
+        scanf("%d", &escolha2);
+    } while (escolha2 == escolha1 || escolha2 < 1 || escolha2 > 7);
 
-    // Atribuir valores (carta 1 e 2)
-    switch (atr1) {
-        case 1: v1_c1 = populacao1; v1_c2 = populacao2; break;
-        case 2: v1_c1 = area1; v1_c2 = area2; break;
-        case 3: v1_c1 = pib1; v1_c2 = pib2; break;
-        case 4: v1_c1 = npt1; v1_c2 = npt2; break;
-        case 5: v1_c1 = densidade1; v1_c2 = densidade2; break;
-        case 6: v1_c1 = percapita1; v1_c2 = percapita2; break;
-        case 7: v1_c1 = superpoder1; v1_c2 = superpoder2; break;
+    printf("\n--- COMPARAÇÃO ---\n");
+    printf("%s x %s\n", cidade1, cidade2);
+
+    //comparação por atributo 1
+    printf("\nPrimeiro atributo: ");
+    switch (escolha1) {
+        case 1:
+            printf("População: %lu x %lu\n", populacao1, populacao2);
+            soma1 += populacao1;
+            soma2 += populacao2;
+            break;
+        case 2:
+            printf("Área: %.2f x %.2f\n", area1, area2);
+            soma1 += area1;
+            soma2 += area2;
+            break;
+        case 3:
+            printf("PIB: %.2f x %.2f\n", pib1, pib2);
+            soma1 += pib1;
+            soma2 += pib2;
+            break;
+        case 4:
+            printf("Pontos Turísticos: %d x %d\n", npt1, npt2);
+            soma1 += npt1;
+            soma2 += npt2;
+            break;
+        case 5:
+            printf("Densidade: %.2f x %.2f\n", densidade1, densidade2);
+            soma1 -= densidade1;  // menor é melhor
+            soma2 -= densidade2;
+            break;
+        case 6:
+            printf("PIB per capita: %.2f x %.2f\n", percapita1, percapita2);
+            soma1 += percapita1;
+            soma2 += percapita2;
+            break;
+        case 7:
+            printf("Super Poder: %.2f x %.2f\n", superpoder1, superpoder2);
+            soma1 += superpoder1;
+            soma2 += superpoder2;
+            break;
     }
 
-    switch (atr2) {
-        case 1: v2_c1 = populacao1; v2_c2 = populacao2; break;
-        case 2: v2_c1 = area1; v2_c2 = area2; break;
-        case 3: v2_c1 = pib1; v2_c2 = pib2; break;
-        case 4: v2_c1 = npt1; v2_c2 = npt2; break;
-        case 5: v2_c1 = densidade1; v2_c2 = densidade2; break;
-        case 6: v2_c1 = percapita1; v2_c2 = percapita2; break;
-        case 7: v2_c1 = superpoder1; v2_c2 = superpoder2; break;
+    //comparação por atributo 2
+    printf("Segundo atributo: ");
+    switch (escolha2) {
+        case 1:
+            printf("População: %lu x %lu\n", populacao1, populacao2);
+            soma1 += populacao1;
+            soma2 += populacao2;
+            break;
+        case 2:
+            printf("Área: %.2f x %.2f\n", area1, area2);
+            soma1 += area1;
+            soma2 += area2;
+            break;
+        case 3:
+            printf("PIB: %.2f x %.2f\n", pib1, pib2);
+            soma1 += pib1;
+            soma2 += pib2;
+            break;
+        case 4:
+            printf("Pontos Turísticos: %d x %d\n", npt1, npt2);
+            soma1 += npt1;
+            soma2 += npt2;
+            break;
+        case 5:
+            printf("Densidade: %.2f x %.2f\n", densidade1, densidade2);
+            soma1 -= densidade1;  // menor é melhor
+            soma2 -= densidade2;
+            break;
+        case 6:
+            printf("PIB per capita: %.2f x %.2f\n", percapita1, percapita2);
+            soma1 += percapita1;
+            soma2 += percapita2;
+            break;
+        case 7:
+            printf("Super Poder: %.2f x %.2f\n", superpoder1, superpoder2);
+            soma1 += superpoder1;
+            soma2 += superpoder2;
+            break;
     }
-//invertedor de valor 
-float soma1 = (atr1 == 5 ? -v1_c1 : v1_c1) + (atr2 == 5 ? -v2_c1 : v2_c1);
-float soma2 = (atr1 == 5 ? -v1_c2 : v1_c2) + (atr2 == 5 ? -v2_c2 : v2_c2);
 
-    // Mostrar resultados
-    printf("\n%s x %s\n", cidade1, cidade2);
-    printf("Soma dos dois atributos: %.2f x %.2f\n", soma1, soma2);
+    //soma total
+    printf("\nSoma total ajustada dos atributos:\n");
+    printf("%s: %.2f\n", cidade1, soma1);
+    printf("%s: %.2f\n", cidade2, soma2);
 
+    // Resultado
+    printf("\nResultado final:\n");
     if (soma1 > soma2)
         printf("Vencedor: %s\n", cidade1);
     else if (soma2 > soma1)
