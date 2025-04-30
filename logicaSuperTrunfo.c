@@ -10,6 +10,8 @@ int main() {
     int npt1;
     float densidade1, percapita1, superpoder1;
 
+    
+    printf("----------------------------------------------------\n");
     printf("Carta 1:\n");
     printf("Sua carta é de qual estado brasileiro?: ");
     scanf("%s", estado1);
@@ -25,6 +27,8 @@ int main() {
     scanf("%f", &pib1);
     printf("Quantos pontos turísticos há nesta cidade?: ");
     scanf("%d", &npt1);
+    printf("----------------------------------------------------\n");
+
 
     densidade1 = populacao1 / area1;
     percapita1 = pib1 / populacao1;
@@ -37,6 +41,7 @@ int main() {
     int npt2;
     float densidade2, percapita2, superpoder2;
 
+    printf("----------------------------------------------------\n");
     printf("\nCarta 2:\n");
     printf("Sua carta é de qual estado brasileiro?: ");
     scanf("%s", estado2);
@@ -52,6 +57,8 @@ int main() {
     scanf("%f", &pib2);
     printf("Quantos pontos turísticos há nesta cidade?: ");
     scanf("%d", &npt2);
+    printf("----------------------------------------------------\n");
+
 
     densidade2 = populacao2 / area2;
     percapita2 = pib2 / populacao2;
